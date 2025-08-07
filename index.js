@@ -1,5 +1,9 @@
-const fastify = require('fastify')({ logger: true });
-const accountsRoutes = require('./routes/accounts');
+import Fastify from 'fastify';
+import accountsRoutes from './routes/accounts.js';
+import dotenv from 'dotenv';
+
+dotenv.config();
+const fastify = Fastify({ logger: true });
 
 fastify.register(accountsRoutes, { prefix: '/accounts' });
 

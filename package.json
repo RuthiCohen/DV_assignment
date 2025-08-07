@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "./test.sh",
     "start": "node index.js",
     "dev": "nodemon index.js"
   },
@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/RuthiCohen/DV_assignment#readme",
   "dependencies": {
+    "dotenv": "^17.2.1",
     "fastify": "^5.4.0",
     "fastify-plugin": "^5.0.1"
   }
