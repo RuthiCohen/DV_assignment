@@ -54,6 +54,12 @@ sudo apt install jq
 npm run test
 ```
 
+The script will:
+- Check balance
+- Deposit money
+- Withdraw money
+- Show error handling (invalid/negative amounts, unknown accounts)
+
 ### Author
 Ruthie Cohen :) 
 
