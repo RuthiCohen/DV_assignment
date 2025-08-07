@@ -51,7 +51,12 @@ npm install
 ```
 
 Create `.env` file in project root:
+```bash
+touch .env
 ```
+ 
+And then enter this to .env file:
+```bash
 PORT=3000
 BASE_URL=http://localhost:3000
 ACCOUNT_NUM=12345
