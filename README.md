@@ -29,10 +29,10 @@ https://github.com/RuthiCohen/DV_assignment
 
 ## Tech Stack
 
-- **Node.js** with Fastify — lightweight, fast backend framework
-- **dotenv** — manage environment variables
-- **Shell script** (`test.sh`) — for automated curl-based testing
-- **jq** — to format JSON output from test script
+- **Node.js** with Fastify lightweight, fast backend framework
+- **dotenv** manage environment variables
+- **Shell script** (`test.sh`) for automated curl-based testing
+- **jq** to format JSON output from test script
 
 ---
 
