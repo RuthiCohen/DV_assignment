@@ -20,14 +20,59 @@ I modularized the code by separating routes, added validation using Fastify's sc
 
 #### Challenges:
 
-- Ensuring strict validation for JSON inputs (e.g., amount as number) & checking it
-- Managing clean error handling for unknown account access
+- Ensuring consistent JSON structure in both success and error responses
+- Validating numeric input and handling edge cases
 
 But I must admit I enjoied it :)
 
+---
+
 #### Git Repository:
 
+All code and documentation is available at:
 https://github.com/RuthiCohen/DV_assignment
+
+#### Live API (deployed on Render):
+
+https://dv-assignment-api.onrender.com
+
+---
+
+### Project Structure
+
+- `src/index.js` - Main Fastify server
+- `src/routes/home.js` - Root route (`/`) with welcome message and route list
+- `src/routes/accounts.js` - Handles balance, deposit, and withdraw routes
+- `src/services/accountService.js` - In memory data logic for accounts
+- `test.sh` - Bash script that tests all endpoints
+
+----
+
+##### Check the API:
+
+- In **Development** I ran all tests using a custom Bash script:
+```bash
+npm test
+```
+
+- In **Production** I manually verified the API with curl (example account number: 12345):
+
+    - Get account balance:
+    ```bash
+    curl http://localhost:3000/accounts/12345/balance
+    ```
+    - Deposit money:
+    ```bash
+    curl -X POST http://localhost:3000/accounts/12345/deposit \
+    -H "Content-Type: application/json" \
+    -d '{"amount": 200}'
+    ```
+    - Withdraw money:
+    ```bash
+    curl -X POST http://localhost:3000/accounts/12345/withdraw \
+    -H "Content-Type: application/json" \
+    -d '{"amount": 100}'
+    ```
 
 ---
 
