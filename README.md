@@ -50,6 +50,13 @@ cd DV_assignment
 npm install
 ```
 
+Create `.env` file in project root:
+```
+PORT=3000
+BASE_URL=http://localhost:3000
+ACCOUNT_NUM=12345
+```
+
 ### 3. Running the server
 ```bash
 npm start
