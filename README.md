@@ -64,9 +64,11 @@ touch .env
 And then enter this to .env content:
 
 ```bash
+ENV=dev
 PORT=3000
-BASE_URL=http://localhost:3000
 ACCOUNT_NUM=12345
+BASE_URL_DEV=http://localhost:3000
+BASE_URL_PROD=https://dv-assignment-api.onrender.com/
 ```
 
 ### 3. Running the server

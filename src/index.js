@@ -1,10 +1,12 @@
 import Fastify from "fastify";
+import homeRoute from "./routes/home.js";
 import accountsRoutes from "./routes/accounts.js";
 import dotenv from "dotenv";
 
 dotenv.config();
 const fastify = Fastify({ logger: true });
 
+fastify.register(homeRoute);
 fastify.register(accountsRoutes, { prefix: "/accounts" });
 
 const start = async () => {
