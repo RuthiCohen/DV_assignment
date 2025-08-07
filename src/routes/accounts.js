@@ -1,50 +1,36 @@
-export default async function (fastify, opts) {
-  const accounts = {
-    '12345': 1000,
-    '67890': 500,
-  };
+import {
+  getBalance,
+  depositToAccount,
+  withdrawFromAccount,
+} from '../services/accountService.js';
 
-  fastify.get('/:account_number/balance', {
-    schema: {
-      params: {
-        type: 'object',
-        required: ['account_number'],
-        properties: {
-          account_number: { type: 'string', pattern: '^[0-9]+$' }
-        }
-      }
+export default async function (fastify, opts) {
+  fastify.get('/:account_number/balance', async (req, res) => {
+    try {
+      const result = getBalance(req.params.account_number);
+      return result;
+    } catch (err) {
+      return res.code(404).send({ error: err.message });
     }
-  }, async (req, res) => {
-    const { account_number } = req.params;
-    const balance = accounts[account_number];
-  
-    if (balance === undefined) {
-      return res.code(404).send({ error: 'Account not found' });
-    }
-  
-    return { account_number, balance };
   });
-  
+
   fastify.post('/:account_number/deposit', {
     schema: {
       body: {
         type: 'object',
         required: ['amount'],
         properties: {
-          amount: { type: 'number', minimum: 0.01 }
-        }
-      }
-    }
+          amount: { type: 'number', minimum: 1 },
+        },
+      },
+    },
   }, async (req, res) => {
-    const { account_number } = req.params;
-    const { amount } = req.body;
-  
-    if (!(account_number in accounts)) {
-      return res.code(404).send({ error: 'Account not found' });
+    try {
+      const result = depositToAccount(req.params.account_number, req.body.amount);
+      return result;
+    } catch (err) {
+      return res.code(400).send({ error: err.message });
     }
-  
-    accounts[account_number] += amount;
-    return { account_number, new_balance: accounts[account_number] };
   });
 
   fastify.post('/:account_number/withdraw', {
@@ -53,23 +39,16 @@ export default async function (fastify, opts) {
         type: 'object',
         required: ['amount'],
         properties: {
-          amount: { type: 'number'}
-        }
-      }
-    }
+          amount: { type: 'number', minimum: 1 },
+        },
+      },
+    },
   }, async (req, res) => {
-    const { account_number } = req.params;
-    const { amount } = req.body;
-  
-    if (!(account_number in accounts)) {
-      return res.code(404).send({ error: 'Account not found' });
+    try {
+      const result = withdrawFromAccount(req.params.account_number, req.body.amount);
+      return result;
+    } catch (err) {
+      return res.code(400).send({ error: err.message });
     }
-  
-    if (accounts[account_number] < amount) {
-      return res.code(400).send({ error: 'Insufficient funds' });
-    }
-  
-    accounts[account_number] -= amount;
-    return { account_number, new_balance: accounts[account_number] };
   });
-};
+}
