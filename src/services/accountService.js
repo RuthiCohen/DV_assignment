@@ -3,25 +3,25 @@ const accounts = {
 '67890': 500,
 };
 
+const assertAccountExists = (accountNumber) => {
+if (!(accountNumber in accounts)) {
+    throw new Error('Account not found');
+}
+};
+
 export const getBalance = (accountNumber) => {
-    if (!(accountNumber in accounts)) {
-        throw new Error('Account not found');
-    }
+    assertAccountExists(accountNumber);
     return { account_number: accountNumber, balance: accounts[accountNumber] };
 }
 
 export const depositToAccount = (accountNumber, amount) => {
-    if (!(accountNumber in accounts)) {
-        throw new Error('Account not found');
-    }
+    assertAccountExists(accountNumber);
     accounts[accountNumber] += amount;
     return { account_number: accountNumber, new_balance: accounts[accountNumber] };
 }
 
 export const withdrawFromAccount = (accountNumber, amount) => {
-    if (!(accountNumber in accounts)) {
-        throw new Error('Account not found');
-    }
+    assertAccountExists(accountNumber);
     if (accounts[accountNumber] < amount) {
         throw new Error('Insufficient funds');
     }
