@@ -5,6 +5,17 @@ import {
 } from "../services/accountService.js";
 
 const accountsRoutes = async (fastify, opts) => {
+  fastify.get('/', async (req, res) => {
+    return {
+      message: 'Hi there! welcome to the Fastify ATM API :)',
+      available_routes: {
+        'GET /accounts/:account_number/balance': 'Check account balance',
+        'POST /accounts/:account_number/deposit': 'Deposit money',
+        'POST /accounts/:account_number/withdraw': 'Withdraw money'
+      }
+    };
+  });
+
   fastify.get("/:account_number/balance", async (req, res) => {
     try {
       const result = getBalance(req.params.account_number);
