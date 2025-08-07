@@ -4,7 +4,7 @@ import {
   withdrawFromAccount,
 } from '../services/accountService.js';
 
-export default async function (fastify, opts) {
+const accountsRoutes = async (fastify, opts) => {
   fastify.get('/:account_number/balance', async (req, res) => {
     try {
       const result = getBalance(req.params.account_number);
@@ -52,3 +52,5 @@ export default async function (fastify, opts) {
     }
   });
 }
+
+export default accountsRoutes;
