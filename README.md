@@ -30,6 +30,7 @@ But I must admit I enjoied it :)
 #### Git Repository:
 
 All code and documentation is available at:
+
 https://github.com/RuthiCohen/DV_assignment
 
 #### Live API (deployed on Render):
@@ -59,17 +60,17 @@ npm test
 
     - Get account balance:
     ```bash
-    curl http://localhost:3000/accounts/12345/balance
+    curl https://dv-assignment-api.onrender.com/accounts/12345/balance
     ```
     - Deposit money:
     ```bash
-    curl -X POST http://localhost:3000/accounts/12345/deposit \
+    curl -X POST https://dv-assignment-api.onrender.com/accounts/12345/deposit \
     -H "Content-Type: application/json" \
     -d '{"amount": 200}'
     ```
     - Withdraw money:
     ```bash
-    curl -X POST http://localhost:3000/accounts/12345/withdraw \
+    curl -X POST https://dv-assignment-api.onrender.com/accounts/12345/withdraw \
     -H "Content-Type: application/json" \
     -d '{"amount": 100}'
     ```
